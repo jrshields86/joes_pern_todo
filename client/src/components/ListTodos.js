@@ -12,7 +12,7 @@ const ListTodos = () => {
                 method: "DELETE"
             }); 
 
-            console.log(deleteTodo);
+            setTodos(todos.filter(todo => todo.todo_id !== id));
         } catch (error) {
             console.error(error.message);
         }
@@ -20,7 +20,6 @@ const ListTodos = () => {
 
     const getTodos = async () => {
         try {
-            
             const response = await fetch("http://localhost:5000/todos");
             const jsonData = await response.json();
 
