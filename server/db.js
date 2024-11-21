@@ -1,5 +1,5 @@
 const pg = require('pg');
-const client = new pg.Client('postgres://localhost/joes_perntodo_db');
+const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/joes_perntodo_db');
 
 const setup = async() => {
     await client.connect();
