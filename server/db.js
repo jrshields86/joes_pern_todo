@@ -1,12 +1,11 @@
-const Pool = require("pg").Pool;
-const dotenv = require('dotenv').config();
+const pg = require('pg');
+const client = new pg.Client('postgres://localhost/joes_perntodo_db');
 
-const pool = new Pool({
-    user: process.env.PSQL_USER,
-    password: process.env.PSQL_PASSWORD,
-    host: process.env.PSQL_HOST,
-    port: process.env.PSQL_PORT,
-    database: process.env.PSQL_DATABASE
-});
+const setup = async() => {
+    await client.connect();
+    console.log('connected to the database');
+};
 
-module.exports = pool;
+setup();
+
+module.exports = client;
