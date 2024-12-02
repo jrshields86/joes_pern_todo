@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
     "dev": "nodemon index",
     "build:dev": "node index.js"
   },
@@ -16,13 +15,10 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "nodemon": "^3.1.7",
-    "pg": "^8.13.0",
-    "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4"
+    "pg": "^8.13.0"
   },
   "devDependencies": {
     "babel-loader": "^9.2.1",
-    "html-webpack-plugin": "^5.6.3",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "html-webpack-plugin": "^5.6.3"
   }
 }
