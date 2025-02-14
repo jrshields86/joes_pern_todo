@@ -1,4 +1,5 @@
 const { Client } = require('pg');
+const { useResolvedPath } = require('react-router-dom');
 const client = new Client(process.env.DATABASE_URL || {
     user: 'jrshields86',
     host: 'localhost',
@@ -6,6 +7,14 @@ const client = new Client(process.env.DATABASE_URL || {
     port: 5432,
     password: "Bl@ckonyx1239"
 });
+
+const createUser = async(user) => {
+    const SQL = `
+        INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *
+    `;
+    const response = await client.query(SQL, [user.username, user.password ]);
+    return response.rows[0];
+};
 
 const setup = async() => {
     await client.connect();
@@ -34,6 +43,12 @@ const setup = async() => {
         
     `;
     await client.query(SQL);
+
+    const [moe, lucy, ethyl] = await Promise.all([
+        createUser({ username: 'moe', password: 'm_password'}),
+        createUser({ username: 'lucy', password: 'l_password'}),
+        createUser({ username: 'ethyl', password: 'e_password'}),
+    ]);
     console.log('create tables and seed data');
 };
 
