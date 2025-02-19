@@ -29,7 +29,7 @@ app.post("/todos", async(req, res) => {
 app.get("/todos", async(req,res) => {
     try {
         const allTodos = await client.query("SELECT * FROM todo");
-        
+        console.log(allTodos);
         res.json(allTodos.rows);
     } catch (error) {
         console.error(error.message);
