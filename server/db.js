@@ -9,6 +9,9 @@ const client = new Client(process.env.DATABASE_URL || {
 });
 
 const createUser = async(user) => {
+    if(!user.username || !user.password){
+        throw Error('must have username and password');
+    }
     const SQL = `
         INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *
     `;
