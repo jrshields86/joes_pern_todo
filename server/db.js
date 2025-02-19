@@ -23,7 +23,7 @@ const setup = async() => {
     await client.connect();
     console.log('connected to the database');
     const SQL = `
-        DROP TABLE IF EXISTS todo;
+        DROP TABLE IF EXISTS todos;
         DROP TABLE IF EXISTS users;
 
         CREATE TABLE users(
@@ -51,6 +51,8 @@ const setup = async() => {
         createUser({ username: 'moe', password: 'm_password'}),
         createUser({ username: 'lucy', password: 'l_password'}),
         createUser({ username: 'ethyl', password: 'e_password'}),
+        
+
     ]);
     console.log('create tables and seed data');
 };
