@@ -23,7 +23,7 @@ const setup = async() => {
     await client.connect();
     console.log('connected to the database');
     const SQL = `
-        DROP TABLE IF EXISTS todo;
+        DROP TABLE IF EXISTS todos;
         DROP TABLE IF EXISTS users;
 
         CREATE TABLE users(
@@ -33,14 +33,14 @@ const setup = async() => {
             password VARCHAR(100) NOT NULL
         );
 
-        CREATE TABLE todo(
+        CREATE TABLE todos(
             todo_id SERIAL PRIMARY KEY,
             description VARCHAR(255)
         );
 
-        INSERT INTO todo(description) VALUES ('clean my car');
-        INSERT INTO todo(description) VALUES ('ride my bike');
-        INSERT INTO todo(description) VALUES ('walk the dog');
+        INSERT INTO todos(description) VALUES ('clean my car');
+        INSERT INTO todos(description) VALUES ('ride my bike');
+        INSERT INTO todos(description) VALUES ('walk the dog');
 
         INSERT INTO users(username, password) VALUES ('joe', 1234);
         
