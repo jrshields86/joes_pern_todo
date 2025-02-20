@@ -3,6 +3,10 @@ const app = express();
 const cors = require("cors");
 const client = require("./db");
 
+const {
+    authenticate
+} = require('./db');
+
 
 //middleware
 app.use(cors());
@@ -21,6 +25,16 @@ app.post("/todos", async(req, res) => {
         res.json(newTodo.rows[0]);
     } catch (error) {
         console.error(error.message);
+    }
+});
+
+//user login route
+
+app.post('/login', async(req, res, next)=> {
+    try {
+        res.send(await authenticate(req.body));
+    } catch (ex) {
+        next(ex);
     }
 });
 
