@@ -21,6 +21,10 @@ const createUser = async(user) => {
     return response.rows[0];
 };
 
+const authenticate = async(credentials)=> {
+    return credentials;
+}
+
 const setup = async() => {
     await client.connect();
     console.log('connected to the database');
@@ -56,4 +60,4 @@ const setup = async() => {
 
 setup();
 
-module.exports = client;
+module.exports = {client, authenticate};
