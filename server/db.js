@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const { useResolvedPath } = require('react-router-dom');
+const bcrypt = require('bcrypt');
 const client = new Client(process.env.DATABASE_URL || {
     user: 'jrshields86',
     host: 'localhost',
@@ -12,6 +13,7 @@ const createUser = async(user) => {
     if(!user.username.trim() || !user.password.trim() ){
         throw Error('must have username and password');
     }
+    user.password = await bcrypt.hash(user.password, 5);
     const SQL = `
         INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *
     `;
@@ -40,10 +42,7 @@ const setup = async() => {
 
         INSERT INTO todos(description) VALUES ('clean my car');
         INSERT INTO todos(description) VALUES ('ride my bike');
-        INSERT INTO todos(description) VALUES ('walk the dog');
-
-        INSERT INTO users(username, password) VALUES ('joe', 1234);
-        
+        INSERT INTO todos(description) VALUES ('walk the dog');        
     `;
     await client.query(SQL);
 
