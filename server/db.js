@@ -23,26 +23,7 @@ const createUser = async(user) => {
 };
 
 const findUserByToken = async(token)=> {
-    try {
-        const payload = await jwt.verify(token, process.env.JWT);
-        const SQL = `
-        SELECT user_id, username
-        FROM users
-        WHERE user_id = $1
-    `;
-    const response = await client.query(SQL, [payload.id]);
-    if(!response.rows.length){
-        const error = Error('bad credentials');
-        error.status = 401;
-        throw error;
-    }
-
-    return response.rows[0];
-    } catch (ex) {  
-        const error = Error('bad credentials');
-        error.status = 401;
-        throw error;
-    }
+    
 };
 
 const authenticate = async(credentials)=> {
