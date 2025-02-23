@@ -39,12 +39,11 @@ const findUserByToken = async(token)=> {
 
     return response.rows[0];
     } catch (ex) {  
-        console.log(ex);
         const error = Error('bad credentials');
         error.status = 401;
         throw error;
     }
-}
+};
 
 const authenticate = async(credentials)=> {
     const SQL = `
