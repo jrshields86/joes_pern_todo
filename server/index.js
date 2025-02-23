@@ -4,7 +4,8 @@ const cors = require("cors");
 const client = require("./db");
 
 const {
-    authenticate
+    authenticate,
+    findUserByToken
 } = require('./db');
 
 
@@ -31,12 +32,22 @@ app.post("/todos", async(req, res) => {
 //user login route
 
 app.post('/login', async(req, res, next)=> {
-    console.log(req.body);
     try {
         res.send(await authenticate(req.body));
     } catch (ex) {
         next(ex);
     }
+});
+
+//new route for auth
+
+app.get('/me', async(req, res, next)=> {
+    try {
+        res.send(await findUserByToken(req.headers.authorization));
+    } catch (ex) {
+        next(ex);
+    }
+    
 });
 
 //get all todos

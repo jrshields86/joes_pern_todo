@@ -1,5 +1,5 @@
 const { Client } = require('pg');
-const { useResolvedPath } = require('react-router-dom');
+const { useResolvedPath, UNSAFE_NavigationContext } = require('react-router-dom');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const client = new Client(process.env.DATABASE_URL || {
@@ -22,6 +22,30 @@ const createUser = async(user) => {
     return response.rows[0];
 };
 
+const findUserByToken = async(token)=> {
+    try {
+        const payload = await jwt.verify(token, process.env.JWT);
+        const SQL = `
+        SELECT user_id, username
+        FROM users
+        WHERE user_id = $1
+    `;
+    const response = await client.query(SQL, [payload.id]);
+    if(!response.rows.length){
+        const error = Error('bad credentials');
+        error.status = 401;
+        throw error;
+    }
+
+    return response.rows[0];
+    } catch (ex) {  
+        console.log(ex);
+        const error = Error('bad credentials');
+        error.status = 401;
+        throw error;
+    }
+}
+
 const authenticate = async(credentials)=> {
     const SQL = `
         SELECT user_id, password
@@ -41,7 +65,7 @@ const authenticate = async(credentials)=> {
         throw error;
     }
     return jwt.sign({ user_id: response.rows[0].user_id }, process.env.JWT);
-}
+};
 
 const setup = async() => {
     await client.connect();
@@ -78,4 +102,8 @@ const setup = async() => {
 
 setup();
 
-module.exports = {client, authenticate};
+module.exports = {
+    client,
+    authenticate,
+    findUserByToken
+};
