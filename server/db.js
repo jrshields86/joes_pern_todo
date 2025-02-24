@@ -23,7 +23,15 @@ const createUser = async(user) => {
 };
 
 const findUserByToken = async(token)=> {
-    
+    try {
+        const payload = await jwt.verify(token, process.env.JWT);
+        return payload;
+    } catch (ex) {
+        console.log(ex);
+        const error = Error('bad credentials');
+        error.status = 401;
+        throw error;
+    }
 };
 
 const authenticate = async(credentials)=> {
