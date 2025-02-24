@@ -5,8 +5,10 @@ import './App.css';
 
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
+import { useState } from 'react';
 
 function App() {
+  const [auth, setAuth] = useState({});
   return (
     <Fragment>
       <div className='container'>
