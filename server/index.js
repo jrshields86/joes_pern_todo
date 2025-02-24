@@ -52,10 +52,9 @@ app.get('/me', async(req, res, next)=> {
 
 //get all todos
 
-app.get("/todos", async(req,res) => {
+app.get("/todos", async(req,res,) => {
     try {
         const allTodos = await client.query("SELECT * FROM todos");
-        console.log(allTodos);
         res.json(allTodos.rows);
     } catch (error) {
         console.error(error.message);
