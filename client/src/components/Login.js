@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
-const Login = ()=> {
+const Login = ({ login })=> {
+    console.log(login);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const _login = (ev)=> {
+        ev.preventDefault();
+        login({ username, password});
+    };
+
     return (
-        <form>
+        <form onSubmit={ _login}>
             <input
                 placeholder='username' 
                 value={ username }
@@ -17,7 +23,7 @@ const Login = ()=> {
                 value={ password }
                 onChange={ev => setPassword(ev.target.value)}
             />
-            <button>Login</button>
+            <button disabled={!username || !password}>Login</button>
         </form>
     );
 };

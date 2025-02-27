@@ -10,6 +10,11 @@ import { useState } from 'react';
 
 function App() {
   const [auth, setAuth] = useState({});
+
+  const login = (credentials)=> {
+    console.log(credentials);
+  };
+
   return (
     <Fragment>
       <div>
@@ -20,7 +25,7 @@ function App() {
             <ListTodos />
           </div>
         ):(
-        <Login />
+        <Login login={ login }/>
         )
       }
       </div>
