@@ -7,21 +7,21 @@ const Login = ({ login })=> {
 
     const _login = (ev)=> {
         ev.preventDefault();
-        login({ username, password});
+        login({ username, password });
     };
 
     return (
-        <form onSubmit={ _login}>
+        <form onSubmit={ _login }>
             <input
                 placeholder='username' 
                 value={ username }
-                onChange={ev => setUsername(ev.target.value)}
+                onChange={ ev => setUsername(ev.target.value)}
             />
             <input
                 type='password' 
                 placeholder='password' 
                 value={ password }
-                onChange={ev => setPassword(ev.target.value)}
+                onChange={  ev => setPassword(ev.target.value)}
             />
             <button disabled={!username || !password}>Login</button>
         </form>
