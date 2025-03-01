@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 //components
@@ -6,17 +7,17 @@ import './App.css';
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
 import Login from './components/Login';
-import { useState } from 'react';
 
 function App() {
   const [auth, setAuth] = useState({});
 
-  const login = (credentials)=> {
+  const login = async(credentials)=> {
     console.log(credentials);
+    const response = await axios.post('/login', credentials);
   };
 
   return (
-    <Fragment>
+    <>
       <div>
       {
         auth.id ? (
@@ -29,7 +30,7 @@ function App() {
         )
       }
       </div>
-    </Fragment>);
+    </>);
 }
 
 export default App;
