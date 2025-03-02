@@ -32,6 +32,7 @@ app.post("/todos", async(req, res) => {
 //user login route
 
 app.post('/login', async(req, res, next)=> {
+    console.log(req.body);
     try {
         res.send(await authenticate(req.body));
     } catch (ex) {
@@ -53,6 +54,7 @@ app.get('/me', async(req, res, next)=> {
 //get all todos
 
 app.get("/todos", async(req,res,) => {
+    console.log('app get');
     try {
         const allTodos = await client.query("SELECT * FROM todos");
         res.json(allTodos.rows);
