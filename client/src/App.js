@@ -18,7 +18,11 @@ function App() {
   return (
     <Fragment>
       <div>
-      {
+        <div className='container'>
+          <InputTodo />
+          <ListTodos />
+        </div>
+      {/* {
         auth.id ? (
           <div className='container'>
             <InputTodo />
@@ -27,7 +31,7 @@ function App() {
         ):(
         <Login login={ login }/>
         )
-      }
+      } */}
       </div>
     </Fragment>);
 }
