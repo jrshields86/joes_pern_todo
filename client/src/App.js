@@ -19,15 +19,19 @@ function App() {
   return (
     <>
       <div>
+      <div className='container'>
+        <InputTodo />
+        <ListTodos />
+      </div>
       {
-        auth.id ? (
-          <div className='container'>
-            <InputTodo />
-            <ListTodos />
-          </div>
-        ):(
-        <Login login={ login }/>
-        )
+        // auth.id ? (
+        //   <div className='container'>
+        //     <InputTodo />
+        //     <ListTodos />
+        //   </div>
+        // ):(
+        // <Login login={ login }/>
+        // )
       }
       </div>
     </>);
