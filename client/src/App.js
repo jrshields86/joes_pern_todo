@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { Fragment } from 'react';
 import './App.css';
 
 //components
@@ -7,34 +6,30 @@ import './App.css';
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
 import Login from './components/Login';
+import { useState } from 'react';
 
 function App() {
   const [auth, setAuth] = useState({});
 
-  const login = async(credentials)=> {
+  const login = (credentials)=> {
     console.log(credentials);
-    const response = await axios.post('/login', credentials);
   };
 
   return (
-    <>
+    <Fragment>
       <div>
-      <div className='container'>
-        <InputTodo />
-        <ListTodos />
-      </div>
       {
-        // auth.id ? (
-        //   <div className='container'>
-        //     <InputTodo />
-        //     <ListTodos />
-        //   </div>
-        // ):(
-        // <Login login={ login }/>
-        // )
+        auth.id ? (
+          <div className='container'>
+            <InputTodo />
+            <ListTodos />
+          </div>
+        ):(
+        <Login login={ login }/>
+        )
       }
       </div>
-    </>);
+    </Fragment>);
 }
 
 export default App;
