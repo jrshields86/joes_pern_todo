@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import axios from 'axios';
 
 const InputTodo = () => {
 
@@ -6,14 +7,10 @@ const InputTodo = () => {
 
     const onSubmitForm = async e => {
         e.preventDefault();
+        console.log(e);
         try {
             const body = { description };
-            const response = await fetch('https://joes-pern-todo-backend.onrender.com/todos', {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            });
-
+            const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body);
             window.location = "/";
         } catch (error) {
             console.error(error.message);
