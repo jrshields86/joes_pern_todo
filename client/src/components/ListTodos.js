@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+import axios from 'axios';
 
 const ListTodos = () => {
 
@@ -17,21 +18,16 @@ const ListTodos = () => {
         } catch (error) {
             console.error(error.message);
         }
-    }
+    };
 
     const getTodos = async () => {
         try {
-            const response = await fetch("https://joes-pern-todo-backend.onrender.com/todos");
-            const jsonData = await response.json();
-
-            setTodos(jsonData);
-
+            const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
+            setTodos(data);
         } catch (error) {
             console.error(error.message);
         }
-    }
-
-     
+    };
 
     useEffect(() => {
         getTodos();
