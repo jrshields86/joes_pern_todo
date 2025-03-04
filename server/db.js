@@ -10,6 +10,15 @@ const client = new Client(process.env.DATABASE_URL || {
     password: "Bl@ckonyx1239"
 });
 
+const getTodos = async()=> {
+    const SQL = `
+        SELECT *
+        FROM todos
+    `;
+    const response = await client.query(SQL);
+    return response.rows;
+}
+
 const createUser = async(user) => {
     if(!user.username.trim() || !user.password.trim() ){
         throw Error('must have username and password');
@@ -105,5 +114,6 @@ setup();
 module.exports = {
     client,
     authenticate,
-    findUserByToken
+    findUserByToken,
+    getTodos
 };

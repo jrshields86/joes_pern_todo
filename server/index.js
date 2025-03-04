@@ -5,7 +5,8 @@ const client = require("./db");
 
 const {
     authenticate,
-    findUserByToken
+    findUserByToken,
+    getTodos
 } = require('./db');
 
 
@@ -56,12 +57,13 @@ app.get('/me', async(req, res, next)=> {
 app.get('/todos', async(req,res,) => {
     console.log(res);
     console.log('app get');
-    try {
-        const allTodos = await client.query("SELECT * FROM todos");
-        res.send(allTodos.rows);
-    } catch (error) {
-        console.error(error.message);
-    }
+    res.send(await getTodos());
+    // try {
+    //     const allTodos = await client.query("SELECT * FROM todos");
+    //     res.send(allTodos.rows);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
 });
 
 //get a todo
