@@ -17,7 +17,15 @@ const getTodos = async()=> {
     `;
     const response = await client.query(SQL);
     return response.rows;
-}
+};
+
+const makeNewTodo = async(description)=> {
+    const SQL = `
+        INSERT INTO todos (description) VALUES ($1) RETURNING *
+    `;
+    const { rows } = await client.query(SQL, [description])
+    return rows;
+};
 
 const createUser = async(user) => {
     if(!user.username.trim() || !user.password.trim() ){
@@ -115,5 +123,6 @@ module.exports = {
     client,
     authenticate,
     findUserByToken,
-    getTodos
+    getTodos,
+    makeNewTodo
 };
