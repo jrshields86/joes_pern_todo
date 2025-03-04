@@ -6,7 +6,8 @@ const client = require("./db");
 const {
     authenticate,
     findUserByToken,
-    getTodos
+    getTodos,
+    makeNewTodo
 } = require('./db');
 
 
@@ -19,15 +20,16 @@ app.use(express.json());  //req.body
 //create a todo
 
 app.post("/todos", async(req, res) => {
-    try {
-        const { description } = req.body;
-        const newTodo = await client.query("INSERT INTO todos (description) VALUES($1) RETURNING * ",
-            [description]
-        );
-        res.json(newTodo.rows[0]);
-    } catch (error) {
-        console.error(error.message);
-    }
+    const { description } = req.body;
+    res.send(await makeNewTodo(description));
+    // try {
+    //     const newTodo = await client.query("INSERT INTO todos (description) VALUES($1) RETURNING * ",
+    //         [description]
+    //     );
+    //     res.json(newTodo.rows[0]);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
 });
 
 //user login route
@@ -55,15 +57,11 @@ app.get('/me', async(req, res, next)=> {
 //get all todos
 
 app.get('/todos', async(req,res,) => {
-    console.log(res);
-    console.log('app get');
-    res.send(await getTodos());
-    // try {
-    //     const allTodos = await client.query("SELECT * FROM todos");
-    //     res.send(allTodos.rows);
-    // } catch (error) {
-    //     console.error(error.message);
-    // }
+    try {
+        res.send(await getTodos());
+    } catch (error) {
+        console.error(error.message);
+    }
 });
 
 //get a todo
