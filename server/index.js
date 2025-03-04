@@ -7,7 +7,8 @@ const {
     authenticate,
     findUserByToken,
     getTodos,
-    makeNewTodo
+    makeNewTodo,
+    deleteTodo
 } = require('./db');
 
 
@@ -19,17 +20,13 @@ app.use(express.json());  //req.body
 
 //create a todo
 
-app.post("/todos", async(req, res) => {
-    const { description } = req.body;
-    res.send(await makeNewTodo(description));
-    // try {
-    //     const newTodo = await client.query("INSERT INTO todos (description) VALUES($1) RETURNING * ",
-    //         [description]
-    //     );
-    //     res.json(newTodo.rows[0]);
-    // } catch (error) {
-    //     console.error(error.message);
-    // }
+app.post("/todos", async(req, res, next) => {
+    try {
+        const { description } = req.body;
+        res.send(await makeNewTodo(description));
+    } catch (ex) {
+        next(ex);
+    }
 });
 
 //user login route
@@ -56,7 +53,7 @@ app.get('/me', async(req, res, next)=> {
 
 //get all todos
 
-app.get('/todos', async(req,res,) => {
+app.get('/todos', async(req,res,next) => {
     try {
         res.send(await getTodos());
     } catch (error) {
@@ -66,7 +63,7 @@ app.get('/todos', async(req,res,) => {
 
 //get a todo
 
-app.get("/todos/:id", async (req, res) => {
+app.get("/todos/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
         const todo = await client.query("SELECT * FROM todos WHERE todo_id = $1", [id]);
@@ -93,14 +90,13 @@ app.put("/todos/:id", async (req,res) => {
 
 //delete a todo
 
-app.delete("/todos/:id", async (req, res) => {
+app.delete("/todos/:id", async (req, res, next) => {
+    console.log('testing delete route');
     try {
         const { id } = req.params;
-        const deleteTodo = await client.query("DELETE FROM todos WHERE todo_id = $1", [id]);
-
-        res.json("Todo was deleted!")
-    } catch (error) {
-        console.error(error.message);
+        res.send(await deleteTodo(id));
+    } catch (ex) {
+        next(ex);
     }
 });
 
