@@ -3,23 +3,23 @@ import axios from 'axios';
 
 const EditTodo = ({ todo }) => {
     const [description, setDescription] = useState(todo.description);
-
     //edit description function
 
     const updateDescription = async (e) => {
         e.preventDefault();
+        
         try {
-            const body = { description };
-            const response = await fetch(`https://joes-pern-todo-backend.onrender.com/todos/${todo.todo_id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            });
+            const body = {
+                "todo_id": todo.todo_id,
+                "description": description 
+            };
+            const response = await axios.put(`https://joes-pern-todo-backend.onrender.com/todos/${todo.todo_id}`, body);
+
             window.location = "/";
         } catch (error) {
             console.error(error.message);
         }
-    };
+    }
     
 
 
