@@ -46,6 +46,17 @@ const singleTodo = async(id)=> {
     return response.rows[0];
 };
 
+const updateTodo = async(id, description)=> {
+    const SQL = `
+        UPDATE todos
+        SET description = $1
+        WHERE todo_id = $2
+        RETURNING *
+    `;
+    const response = await client.query(SQL, [description, id]);
+    return response.rows[0];
+};
+
 const createUser = async(user) => {
     if(!user.username.trim() || !user.password.trim() ){
         throw Error('must have username and password');
@@ -145,5 +156,6 @@ module.exports = {
     getTodos,
     makeNewTodo,
     deleteTodo,
-    singleTodo
+    singleTodo,
+    updateTodo
 };
