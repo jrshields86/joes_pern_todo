@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react"
+import axios from 'axios';
 
 const EditTodo = ({ todo }) => {
     const [description, setDescription] = useState(todo.description);
@@ -14,12 +15,11 @@ const EditTodo = ({ todo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-
             window.location = "/";
         } catch (error) {
             console.error(error.message);
         }
-    }
+    };
     
 
 
