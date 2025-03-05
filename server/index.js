@@ -9,7 +9,8 @@ const {
     getTodos,
     makeNewTodo,
     deleteTodo,
-    singleTodo
+    singleTodo,
+    updateTodo
 } = require('./db');
 
 
@@ -76,15 +77,18 @@ app.get("/todos/:id", async (req, res, next) => {
 //update a todo
 
 app.put("/todos/:id", async (req,res) => {
-    try {
-        const { id } = req.params;
-        const { description } = req.body;
-        const updateTodo = await client.query("UPDATE todos SET description = $1 WHERE todo_id = $2", [description, id]);
+    const { id } = req.params;
+    const { description } = req.body;
+    res.send(await updateTodo(id, description));
+    // try {
+    //     const { id } = req.params;
+    //     const { description } = req.body;
+    //     const updateTodo = await client.query("UPDATE todos SET description = $1 WHERE todo_id = $2", [description, id]);
 
-        res.json("Todo has been updated!");
-    } catch (error) {
-        console.error(error.message);
-    }
+    //     res.json("Todo has been updated!");
+    // } catch (error) {
+    //     console.error(error.message);
+    // }
 });
 
 //delete a todo
