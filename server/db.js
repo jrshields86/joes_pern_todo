@@ -36,6 +36,16 @@ const deleteTodo = async(id)=> {
     return `Item: ${id} Deleted`
 };
 
+const singleTodo = async(id)=> {
+    const SQL = `
+        SELECT description
+        FROM todos
+        WHERE todo_id = $1
+    `;
+    const response = await client.query(SQL, [id]);
+    return response.rows[0];
+};
+
 const createUser = async(user) => {
     if(!user.username.trim() || !user.password.trim() ){
         throw Error('must have username and password');
@@ -134,5 +144,6 @@ module.exports = {
     findUserByToken,
     getTodos,
     makeNewTodo,
-    deleteTodo
+    deleteTodo,
+    singleTodo
 };
