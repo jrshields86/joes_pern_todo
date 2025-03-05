@@ -13,8 +13,8 @@ function App() {
   const [auth, setAuth] = useState({});
 
   const login = async(credentials)=> {
-    const { data } = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
-    console.log(data);
+    const response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
+    console.log(response);
   };
 
   return (

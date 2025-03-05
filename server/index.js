@@ -34,9 +34,9 @@ app.post("/todos", async(req, res, next) => {
 //user login route
 
 app.post('/login', async(req, res, next)=> {
-    console.log(req.body);
     try {
-        res.send(await authenticate(req.body));
+        const token = await authenticate(req.body);
+        res.send({ token });
     } catch (ex) {
         next(ex);
     }
