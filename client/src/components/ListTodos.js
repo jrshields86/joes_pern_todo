@@ -10,9 +10,7 @@ const ListTodos = () => {
 
     const deleteTodo = async(id) => {
         try {
-            const deleteTodo = await fetch(`https://joes-pern-todo-backend.onrender.com/todos/${id}`, {
-                method: "DELETE"
-            }); 
+            const deleteTodo = await axios.delete(`https://joes-pern-todo-backend.onrender.com/todos/${id}`); 
 
             setTodos(todos.filter(todo => todo.todo_id !== id));
         } catch (error) {
