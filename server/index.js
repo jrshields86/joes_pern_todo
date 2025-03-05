@@ -8,7 +8,8 @@ const {
     findUserByToken,
     getTodos,
     makeNewTodo,
-    deleteTodo
+    deleteTodo,
+    singleTodo
 } = require('./db');
 
 
@@ -66,11 +67,9 @@ app.get('/todos', async(req,res,next) => {
 app.get("/todos/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
-        const todo = await client.query("SELECT * FROM todos WHERE todo_id = $1", [id]);
-
-        res.json(todo.rows[0]);
-    } catch (error) {           
-        console.error(error.message);        
+        res.send(await singleTodo(id));
+    } catch (ex) {           
+        next(ex);        
     }
 });
 
