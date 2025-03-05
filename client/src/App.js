@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.css';
+import axios from 'axios';
 
 //components
 
@@ -11,18 +12,15 @@ import { useState } from 'react';
 function App() {
   const [auth, setAuth] = useState({});
 
-  const login = (credentials)=> {
-    console.log(credentials);
+  const login = async(credentials)=> {
+    const { data } = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
+    console.log(data);
   };
 
   return (
     <Fragment>
       <div>
-        <div className='container'>
-          <InputTodo />
-          <ListTodos />
-        </div>
-      {/* {
+      {
         auth.id ? (
           <div className='container'>
             <InputTodo />
@@ -31,7 +29,7 @@ function App() {
         ):(
         <Login login={ login }/>
         )
-      } */}
+      }
       </div>
     </Fragment>);
 }
