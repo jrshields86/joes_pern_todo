@@ -13,8 +13,9 @@ function App() {
   const [auth, setAuth] = useState({});
 
   const login = async(credentials)=> {
-    const response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
-    console.log(response);
+    let response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
+    const { token } = response.data;
+    console.log(token);
   };
 
   return (
