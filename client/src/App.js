@@ -15,7 +15,13 @@ function App() {
   const login = async(credentials)=> {
     let response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
     const { token } = response.data;
-    console.log(token);
+
+    response = await axios.get('https://joes-pern-todo-backend.onrender.com/me', {
+      headers: {
+        authorization: token
+      }
+    });
+    console.log(response.data);
   };
 
   return (
