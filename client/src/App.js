@@ -15,16 +15,23 @@ function App() {
   const login = async(credentials)=> {
     let response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
     const { token } = response.data;
-    console.log(token);
+    window.localStorage.setItem('token', token);
+
+    response = await axios.get('https://joes-pern-todo-backend.onrender.com/me', {
+      headers: {
+        authorization: token
+      }
+    });
+    setAuth(response.data);
   };
 
   return (
     <Fragment>
       <div>
       {
-        auth.id ? (
+        auth.user_id ? (
           <div className='container'>
-            <InputTodo />
+            <InputTodo auth={ auth }/>
             <ListTodos />
           </div>
         ):(
