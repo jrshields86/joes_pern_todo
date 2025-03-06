@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 
-const InputTodo = ({ auth }) => {
+const InputTodo = ({ auth, setAuth }) => {
     const [description, setDescription] = useState('');
 
     const onSubmitForm = async e => {
@@ -16,10 +16,16 @@ const InputTodo = ({ auth }) => {
         }
     };
 
+    const logout = ()=> {
+        window.localStorage.removeItem('token');
+        setAuth({});
+    }
+
     return (
         <Fragment>
             <span>
                 Welcome { auth.username }!!
+                <button onClick={ logout }>Logout</button>
             </span>
             <h1 className='text-center mt-5'>Joe's PERN Todo List</h1>
             <form className='d-flex mt-5' onSubmit={onSubmitForm}>
