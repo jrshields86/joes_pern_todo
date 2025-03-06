@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 
 const Login = ({ login })=> {
-    console.log(login);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
