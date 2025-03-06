@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const InputTodo = ({ auth, setAuth }) => {
@@ -22,7 +22,7 @@ const InputTodo = ({ auth, setAuth }) => {
     }
 
     return (
-        <Fragment>
+        <>
             <span>
                 Welcome { auth.username }!!
                 <button onClick={ logout }>Logout</button>
@@ -36,7 +36,7 @@ const InputTodo = ({ auth, setAuth }) => {
                     onChange={e => setDescription(e.target.value)}/>
                 <button className='btn btn-success'>Add</button>
             </form>
-        </Fragment>
+        </>
     );
 };
 

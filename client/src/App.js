@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <>
       <div>
       {
         auth.user_id ? (
@@ -54,7 +54,7 @@ function App() {
         )
       }
       </div>
-    </Fragment>);
+    </>);
 }
 
 export default App;
