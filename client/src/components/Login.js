@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 const Login = ({ login })=> {
     const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const Login = ({ login })=> {
     };
 
     return (
-        <Fragment>
+        <>
             <form onSubmit={ _login }>
                 <input
                     placeholder='username' 
@@ -25,7 +25,7 @@ const Login = ({ login })=> {
                 />
                 <button disabled={!username || !password}>Login</button>
             </form>
-        </Fragment>
+        </>
     );
 };
 

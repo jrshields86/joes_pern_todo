@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 import axios from 'axios';
 
@@ -32,7 +32,7 @@ const ListTodos = () => {
     }, []);
 
     return (
-        <Fragment>
+        <>
             {" "}
             <table className="table mt-5 text-center">
                 <thead>
@@ -65,7 +65,7 @@ const ListTodos = () => {
                     ))}
                 </tbody>
             </table>
-        </Fragment>    
+        </>    
     );
 };
 
