@@ -130,7 +130,8 @@ const setup = async() => {
 
         CREATE TABLE todos(
             todo_id SERIAL PRIMARY KEY,
-            description VARCHAR(255)
+            description VARCHAR(255),
+            user_id INTEGER REFERENCES users(user_id)
         );
 
         INSERT INTO todos(description) VALUES ('clean my car');
