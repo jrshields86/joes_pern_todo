@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 import axios from 'axios';
 
-const ListTodos = () => {
+const ListTodos = ({ auth }) => {
+    console.log(auth);
 
     const [todos, setTodos] = useState([]);
 
@@ -29,7 +30,7 @@ const ListTodos = () => {
 
     useEffect(() => {
         getTodos();
-    }, []);
+    }, [auth]);
 
     return (
         <>

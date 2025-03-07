@@ -10,12 +10,14 @@ const client = new Client(process.env.DATABASE_URL || {
     password: "Bl@ckonyx1239"
 });
 
-const getTodos = async()=> {
+const getTodos = async(userId)=> {
+    console.log(userId);
     const SQL = `
         SELECT *
         FROM todos
+        WHERE user_id = $1
     `;
-    const response = await client.query(SQL);
+    const response = await client.query(SQL, [userId]);
     return response.rows;
 };
 
@@ -134,9 +136,9 @@ const setup = async() => {
             user_id INTEGER REFERENCES users(user_id)
         );
 
-        INSERT INTO todos(description) VALUES ('clean my car');
-        INSERT INTO todos(description) VALUES ('ride my bike');
-        INSERT INTO todos(description) VALUES ('walk the dog');        
+        INSERT INTO todos(description, user_id) VALUES ('clean my car',(SELECT user_id FROM users WHERE username ='moe'));
+        INSERT INTO todos(description, user_id) VALUES ('ride my bike',(SELECT user_id FROM users WHERE username ='lucy'));
+        INSERT INTO todos(description, user_id) VALUES ('walk the dog',(SELECT user_id FROM users WHERE username ='ethyl'));
     `;
     await client.query(SQL);
 

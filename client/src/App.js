@@ -48,7 +48,7 @@ function App() {
         auth.user_id ? (
           <div className='container'>
             <InputTodo auth={ auth } setAuth={ setAuth }/>
-            <ListTodos />
+            <ListTodos auth={ auth }/>
           </div>
         ):(
         <Login login={ login }/>
