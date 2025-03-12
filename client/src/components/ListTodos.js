@@ -3,8 +3,6 @@ import EditTodo from "./EditTodo";
 import axios from 'axios';
 
 const ListTodos = ({ auth }) => {
-    console.log(auth);
-
     const [todos, setTodos] = useState([]);
 
     //delete todo function

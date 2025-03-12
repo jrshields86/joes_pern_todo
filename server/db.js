@@ -21,11 +21,12 @@ const getTodos = async(userId)=> {
     return response.rows;
 };
 
-const makeNewTodo = async(description)=> {
+const makeNewTodo = async(description, id)=> {
+    console.log(id);
     const SQL = `
-        INSERT INTO todos (description) VALUES ($1) RETURNING *
+        INSERT INTO todos (description, user_id) VALUES ($1, $2) RETURNING *
     `;
-    const { rows } = await client.query(SQL, [description])
+    const { rows } = await client.query(SQL, [description, id])
     return rows;
 };
 

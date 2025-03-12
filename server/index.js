@@ -25,7 +25,8 @@ app.use(express.json());  //req.body
 app.post("/todos", async(req, res, next) => {
     try {
         const { description } = req.body;
-        res.send(await makeNewTodo(description));
+        const { id } = req.body;
+        res.send(await makeNewTodo(description, id));
     } catch (ex) {
         next(ex);
     }
