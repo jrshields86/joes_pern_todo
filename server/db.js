@@ -22,7 +22,6 @@ const getTodos = async(userId)=> {
 };
 
 const makeNewTodo = async(description, id)=> {
-    console.log(id);
     const SQL = `
         INSERT INTO todos (description, user_id) VALUES ($1, $2) RETURNING *
     `;
