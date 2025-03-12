@@ -20,6 +20,7 @@ const ListTodos = ({ auth }) => {
     const getTodos = async () => {
         try {
             const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
+            console.log(data);
             setTodos(data);
         } catch (error) {
             console.error(error.message);

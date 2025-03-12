@@ -11,7 +11,6 @@ const client = new Client(process.env.DATABASE_URL || {
 });
 
 const getTodos = async(userId)=> {
-    console.log(userId);
     const SQL = `
         SELECT *
         FROM todos
