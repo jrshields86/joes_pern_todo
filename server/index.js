@@ -56,12 +56,13 @@ app.get('/me', async(req, res, next)=> {
 
 //get all todos
 
-app.get('/todos', async(req,res,next) => {
+app.get('/todos', async(req, res, next) => {
+    console.log(res);
     const { userId } = req.body;
     try {
         res.send(await getTodos(userId));
     } catch (error) {
-        console.error(error.message);
+        next(ex);
     }
 });
 
@@ -78,25 +79,19 @@ app.get("/todos/:id", async (req, res, next) => {
 
 //update a todo
 
-app.put("/todos/:id", async (req,res) => {
-    const { id } = req.params;
-    const { description } = req.body;
-    res.send(await updateTodo(id, description));
-    // try {
-    //     const { id } = req.params;
-    //     const { description } = req.body;
-    //     const updateTodo = await client.query("UPDATE todos SET description = $1 WHERE todo_id = $2", [description, id]);
-
-    //     res.json("Todo has been updated!");
-    // } catch (error) {
-    //     console.error(error.message);
-    // }
+app.put("/todos/:id", async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { description } = req.body;
+        res.send(await updateTodo(id, description));
+    } catch (ex) {
+        next(ex);
+    }
 });
 
 //delete a todo
 
 app.delete("/todos/:id", async (req, res, next) => {
-    console.log('testing delete route');
     try {
         const { id } = req.params;
         res.send(await deleteTodo(id));
