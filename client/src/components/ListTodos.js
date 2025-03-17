@@ -18,12 +18,9 @@ const ListTodos = ({ auth }) => {
         }
     };
 
-    const getTodos = async (userId) => {
+    const getTodos = async () => {
         try {
-            const id = userId;
-            console.log(userId);
             const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
-            console.log(data);
             setTodos(data);
         } catch (error) {
             console.error(error.message);
@@ -31,7 +28,7 @@ const ListTodos = ({ auth }) => {
     };
 
     useEffect(() => {
-        getTodos(userId);
+        getTodos();
     }, [auth]);
 
     return (
