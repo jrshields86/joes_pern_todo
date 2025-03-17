@@ -15,7 +15,6 @@ const InputTodo = ({ auth, setAuth }) => {
             const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body);
             window.location = "/";
         } catch (error) {
-            console.error(error.message);
         }
     };
 

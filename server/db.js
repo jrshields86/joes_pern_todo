@@ -11,10 +11,10 @@ const client = new Client(process.env.DATABASE_URL || {
 });
 
 const getTodos = async(userId)=> {
+    console.log(userId);
     const SQL = `
         SELECT *
         FROM todos
-        WHERE user_id = $1
     `;
     const response = await client.query(SQL, [userId]);
     return response.rows;
@@ -87,7 +87,6 @@ const findUserByToken = async(token)=> {
 
         return response.rows[0];
     } catch (ex) {
-        console.log(ex);
         const error = Error('bad credentials');
         error.status = 401;
         throw error;
