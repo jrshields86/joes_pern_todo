@@ -57,10 +57,8 @@ app.get('/me', async(req, res, next)=> {
 //get all todos
 
 app.get('/todos', async(req, res, next) => {
-    console.log(req.body);
-    const { userId } = req.body;
     try {
-        res.send(await getTodos(userId));
+        res.send(await getTodos());
     } catch (ex) {
         next(ex);
     }
