@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const ListTodos = ({ auth }) => {
     const [todos, setTodos] = useState([]);
+    const userId = auth.user_id;
 
     //delete todo function
 
@@ -17,8 +18,10 @@ const ListTodos = ({ auth }) => {
         }
     };
 
-    const getTodos = async () => {
+    const getTodos = async (userId) => {
         try {
+            const id = userId;
+            console.log(userId);
             const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
             console.log(data);
             setTodos(data);
@@ -28,7 +31,7 @@ const ListTodos = ({ auth }) => {
     };
 
     useEffect(() => {
-        getTodos();
+        getTodos(userId);
     }, [auth]);
 
     return (
