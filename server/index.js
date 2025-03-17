@@ -59,8 +59,8 @@ app.get('/me', async(req, res, next)=> {
 app.get('/todos', async(req, res, next) => {
     try {
         res.send(await getTodos());
-    } catch (ex) {
-        next(ex);
+    } catch (error) {
+        console.error(error);
     }
 });
 
