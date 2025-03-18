@@ -8,6 +8,7 @@ const InputTodo = ({ auth, setAuth }) => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
+            console.log(id);
             const body = {
                 description: description,
                 id: id
