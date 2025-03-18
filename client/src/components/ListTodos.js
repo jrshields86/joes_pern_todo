@@ -21,8 +21,8 @@ const ListTodos = ({ auth }) => {
     const getTodos = async () => {
         try {
             const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
-            console.log(data);
-            setTodos(data);
+            console.log(data.filter(todo => todo.user_id === userId));
+            setTodos(data.filter(todo => todo.user_id === userId));
         } catch (error) {
             console.error(error.message);
         }
