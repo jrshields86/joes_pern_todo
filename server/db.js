@@ -133,10 +133,6 @@ const setup = async() => {
             description VARCHAR(255),
             user_id INTEGER REFERENCES users(user_id)
         );
-
-        INSERT INTO todos(description, user_id) VALUES ('clean my car',(SELECT user_id FROM users WHERE username ='moe'));
-        INSERT INTO todos(description, user_id) VALUES ('ride my bike',(SELECT user_id FROM users WHERE username ='lucy'));
-        INSERT INTO todos(description, user_id) VALUES ('walk the dog',(SELECT user_id FROM users WHERE username ='ethyl'));
     `;
     await client.query(SQL);
 
