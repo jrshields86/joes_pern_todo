@@ -59,7 +59,8 @@ app.get('/me', async(req, res, next)=> {
 
 app.get('/todos', async(req, res, next) => {
     try {
-        res.send(await getTodos());
+        const user = await findUserByToken(req.headers.authorization);
+        res.send(await getTodos(user.user_id));
     } catch (error) {
         console.error(error);
     }
