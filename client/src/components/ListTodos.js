@@ -20,8 +20,11 @@ const ListTodos = ({ auth }) => {
 
     const getTodos = async () => {
         try {
-            const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos");
-            console.log(data.filter(todo => todo.user_id === userId));
+            const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos", {
+                headers: {
+                    authorization: window.localStorage.getItem('token')
+                }
+            });
             setTodos(data.filter(todo => todo.user_id === userId));
         } catch (error) {
             console.error(error.message);
@@ -29,11 +32,14 @@ const ListTodos = ({ auth }) => {
     };
 
     useEffect(() => {
-        getTodos();
+        if(auth.user_id){
+            getTodos();
+        }
     }, [auth]);
 
     return (
         <>
+            <div>Todos: {todos.length}</div>
             {" "}
             <table className="table mt-5 text-center">
                 <thead>
