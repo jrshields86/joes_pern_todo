@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ import axios from 'axios';
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
 import Login from './components/Login';
-import { useState } from 'react';
+// import Register from './components/Register';
 
 function App() {
   const [auth, setAuth] = useState({});
