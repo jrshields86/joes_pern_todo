@@ -7,7 +7,7 @@ import axios from 'axios';
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
 import Login from './components/Login';
-// import Register from './components/Register';
+import Register from './components/Register';
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -51,7 +51,10 @@ function App() {
             <ListTodos auth={ auth }/>
           </div>
         ):(
-        <Login login={ login }/>
+          <div>
+          <Login login={ login }/>
+          <Register />
+        </div>
         )
       }
       </div>
