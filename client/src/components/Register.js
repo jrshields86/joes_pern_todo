@@ -4,12 +4,16 @@ const Register = ()=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState(''); 
 
+    const createLogin = (ev) => {
+        ev.preventDefault();
+    };
+
 
     return (
         <>
             <div>
                 <h2>Create an Account</h2>
-                <form>
+                <form onSubmit={ createLogin }>
                     <input
                         placeholder="create username"
                         value={username}
@@ -20,6 +24,7 @@ const Register = ()=> {
                         value={password}
                         onChange={ev => setPassword(ev.target.value)}
                     />
+                    <button disabled={!username || !password}>Submit</button>
                 </form>
             </div>
         </>
