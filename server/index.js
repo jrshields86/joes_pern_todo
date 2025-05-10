@@ -10,7 +10,9 @@ const {
     makeNewTodo,
     deleteTodo,
     singleTodo,
-    updateTodo
+    updateTodo,
+    createUser,
+    getAllUsers
 } = require('./db');
 
 
@@ -30,6 +32,23 @@ app.post("/todos", async(req, res, next) => {
         res.send(await makeNewTodo(description, id));
     } catch (ex) {
         next(ex);
+    }
+});
+
+app.get("/users", async(req, res, next) => {
+    try {
+        res.send(getAllUsers());
+    } catch (ex) {
+        next(ex);
+    }
+});
+
+app.post("/users", async(req, res, next) => {
+    try {
+        const user = req.body;
+        res.send(createUser(user));
+    } catch (ex) {
+        next(ex);        
     }
 });
 
