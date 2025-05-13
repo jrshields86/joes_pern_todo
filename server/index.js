@@ -26,7 +26,6 @@ app.use(express.json());  //req.body
 
 app.post("/todos", async(req, res, next) => {
     try {
-        console.log(req.body);
         const { description } = req.body;
         const { id } = req.body;
         res.send(await makeNewTodo(description, id));
@@ -50,6 +49,7 @@ app.get("/users", async(req, res, next) => {
 app.post("/users", async(req, res, next) => {
     try {
         const user = req.body;
+        console.log(user);
         res.send(await createUser(user));
     } catch (ex) {
         next(ex);        
