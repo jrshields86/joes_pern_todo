@@ -11,6 +11,9 @@ const Login = ({ login })=> {
 
     return (
         <>
+            <div id="loginHeaderParentBox">
+                <h1 id="loginHeader">Your ToDo List</h1>
+            </div>
             <form onSubmit={ _login }>
                 <input
                     placeholder='username' 
