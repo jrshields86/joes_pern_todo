@@ -43,7 +43,6 @@ function App() {
 
   return (
     <>
-      <div>
       {
         auth.user_id ? (
           <div className='container'>
@@ -57,7 +56,6 @@ function App() {
         </div>
         )
       }
-      </div>
     </>);
 }
 

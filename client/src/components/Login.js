@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const Login = ({ login })=> {
     const [username, setUsername] = useState('');
@@ -11,23 +12,32 @@ const Login = ({ login })=> {
 
     return (
         <>
-            <div id="loginHeaderParentBox">
-                <h1 id="loginHeader">Your ToDo List</h1>
+            <div id="landingHeaderParentBox">
+                <h1 id="landingHeader">
+                    Your ToDo List
+                </h1>
             </div>
-            <form onSubmit={ _login }>
-                <input
-                    placeholder='username' 
-                    value={ username }
-                    onChange={ ev => setUsername(ev.target.value)}
-                />
-                <input
-                    type='password' 
-                    placeholder='password' 
-                    value={ password }
-                    onChange={  ev => setPassword(ev.target.value)}
-                />
-                <button disabled={!username || !password}>Login</button>
-            </form>
+            <div id='loginHeaderParentBox'>
+                <h2 id='loginHeader'>
+                    Login
+                </h2>
+            </div>
+            <div id='loginFormParentBox'>
+                <form onSubmit={ _login }>
+                    <input
+                        placeholder='username' 
+                        value={ username }
+                        onChange={ ev => setUsername(ev.target.value)}
+                    />
+                    <input
+                        type='password' 
+                        placeholder='password' 
+                        value={ password }
+                        onChange={  ev => setPassword(ev.target.value)}
+                    />
+                    <button disabled={!username || !password}>Login</button>
+                </form>
+            </div>
         </>
     );
 };
