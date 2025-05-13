@@ -46,7 +46,7 @@ app.get("/users", async(req, res, next) => {
 app.post("/users", async(req, res, next) => {
     try {
         const user = req.body;
-        res.send(createUser(user));
+        res.send(await createUser(user));
     } catch (ex) {
         next(ex);        
     }
