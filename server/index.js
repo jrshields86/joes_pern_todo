@@ -35,6 +35,8 @@ app.post("/todos", async(req, res, next) => {
     }
 });
 
+//get all user route
+
 app.get("/users", async(req, res, next) => {
     try {
         res.send(await getAllUsers());
@@ -42,6 +44,8 @@ app.get("/users", async(req, res, next) => {
         next(ex);
     }
 });
+
+//create new user route
 
 app.post("/users", async(req, res, next) => {
     try {
