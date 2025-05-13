@@ -12,8 +12,11 @@ const Register = ()=> {
 
     return (
         <>
-            <div>
-                <h2>Create an Account</h2>
+            <div id='newLoginHeaderParentBox'>
+                <h2> Or </h2>
+                <h2 id ='newLoginHeader'>Create an Account</h2>
+            </div>
+            <div id='newLoginFormParentBox'>
                 <form onSubmit={ createLogin }>
                     <input
                         placeholder="create username"
