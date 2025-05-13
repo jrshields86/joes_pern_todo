@@ -30,7 +30,7 @@ const InputTodo = ({ auth, setAuth }) => {
                 Welcome { auth.username }!!
                 <button onClick={ logout }>Logout</button>
             </span>
-            <h1 className='text-center mt-5'>Your Todo List</h1>
+            <h1 className='text-center mt-5'>Todo List for { auth.username }</h1>
             <form className='d-flex mt-5' onSubmit={onSubmitForm}>
                 <input
                     type='text'
