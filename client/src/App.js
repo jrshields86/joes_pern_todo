@@ -34,11 +34,15 @@ function App() {
     attemptLoginWithToken();
   }, []);
 
-  const login = async(credentials)=> {
+  const login = async (credentials)=> {
     const response = await axios.post("https://joes-pern-todo-backend.onrender.com/login", credentials);
     const { token } = response.data;
     window.localStorage.setItem('token', token);
     attemptLoginWithToken();
+  };
+
+  const createNewLogin = async (newUser) => {
+    
   };
 
   return (
@@ -46,13 +50,13 @@ function App() {
       {
         auth.user_id ? (
           <div className='container'>
-            <InputTodo auth={ auth } setAuth={ setAuth }/>
-            <ListTodos auth={ auth }/>
+            <InputTodo auth={ auth } setAuth={ setAuth } />
+            <ListTodos auth={ auth } />
           </div>
         ):(
           <div>
           <Login login={ login }/>
-          <Register />
+          <Register createNewLogin={ createNewLogin } />
         </div>
         )
       }

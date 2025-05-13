@@ -1,12 +1,19 @@
+import axios from "axios";
 import React, { useState } from "react";
 
-const Register = ()=> {
+const Register = ({ createNewLogin })=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState(''); 
 
-    const createLogin = (ev) => {
+    const createLoginSubmitForm = async (ev) => {
         ev.preventDefault();
-        
+        const newUser = {
+            username: username,
+            password: password
+        };
+        console.log(newUser);
+        const response = await axios.get('https://joes-pern-todo-backend.onrender.com/users', newUser);
+        console.log(response);
     };
 
 
@@ -17,7 +24,7 @@ const Register = ()=> {
                 <h2 id ='newLoginHeader'>Create an Account</h2>
             </div>
             <div id='newLoginFormParentBox'>
-                <form onSubmit={ createLogin }>
+                <form onSubmit={ createLoginSubmitForm }>
                     <input
                         placeholder="create username"
                         value={username}
