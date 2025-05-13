@@ -7,13 +7,17 @@ const Register = ({ createNewLogin })=> {
 
     const createLoginSubmitForm = async (ev) => {
         ev.preventDefault();
-        const newUser = {
+        try {
+            const newUser = {
             username: username,
             password: password
         };
         console.log(newUser);
-        const response = await axios.get('https://joes-pern-todo-backend.onrender.com/users', newUser);
+        const response = await axios.post('https://joes-pern-todo-backend.onrender.com/users', newUser);
         console.log(response);
+        } catch (error) {
+            
+        }
     };
 
 
