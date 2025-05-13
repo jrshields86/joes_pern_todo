@@ -58,13 +58,14 @@ const updateTodo = async(id, description)=> {
 };
 
 const getAllUsers = async() => {
+    console.log('getAllUsers');
     const SQL = `
         SELECT * 
         FROM users
     `;
     const response = await client.query(SQL);
 
-    console.log(response.rows);
+    return response.rows;
 };
 
 const createUser = async(user) => {

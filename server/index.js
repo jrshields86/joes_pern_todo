@@ -37,7 +37,7 @@ app.post("/todos", async(req, res, next) => {
 
 app.get("/users", async(req, res, next) => {
     try {
-        res.send(getAllUsers());
+        res.send(await getAllUsers());
     } catch (ex) {
         next(ex);
     }
