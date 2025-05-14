@@ -14,7 +14,7 @@ const Register = ({ createNewLogin })=> {
         };
         console.log(newUser);
         const response = await axios.post('https://joes-pern-todo-backend.onrender.com/users', newUser);
-        console.log(response);
+        window.alert('New Login Created');
         } catch (error) {
             
         }
