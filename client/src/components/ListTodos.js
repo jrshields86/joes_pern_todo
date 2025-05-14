@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 import axios from 'axios';
 
-const ListTodos = ({ auth, getHeaders }) => {
+const ListTodos = ({ auth }) => {
     const [todos, setTodos] = useState([]);
     const userId = auth.user_id;
 
@@ -10,7 +10,7 @@ const ListTodos = ({ auth, getHeaders }) => {
 
     const deleteTodo = async(id) => {
         try {
-            const deleteTodo = await axios.delete(`https://joes-pern-todo-backend.onrender.com/todos/${id}`, getHeaders()); 
+            const deleteTodo = await axios.delete(`https://joes-pern-todo-backend.onrender.com/todos/${id}`); 
 
             setTodos(todos.filter(todo => todo.todo_id !== id));
         } catch (error) {
@@ -20,7 +20,11 @@ const ListTodos = ({ auth, getHeaders }) => {
 
     const getTodos = async () => {
         try {
-            const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos", getHeaders());
+            const { data } = await axios.get("https://joes-pern-todo-backend.onrender.com/todos", {
+                headers: {
+                    authorization: window.localStorage.getItem('token')
+                }
+            });
             setTodos(data.filter(todo => todo.user_id === userId));
         } catch (error) {
             console.error(error.message);
@@ -55,7 +59,7 @@ const ListTodos = ({ auth, getHeaders }) => {
                         <tr key={todo.todo_id}>
                             <td>{todo.description}</td>
                             <td>
-                                <EditTodo todo={todo} getHeaders={ getHeaders } />
+                                <EditTodo todo={todo} />
                             </td>
                             <td><button
                                     className="btn btn-danger"

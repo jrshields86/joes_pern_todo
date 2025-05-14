@@ -26,8 +26,6 @@ app.use(express.json());  //req.body
 
 app.post("/todos", async(req, res, next) => {
     try {
-        const user = await findUserByToken(req.headers.authorization);
-        console.log(user);
         const { description } = req.body;
         const { id } = req.body;
         res.send(await makeNewTodo(description, id));
@@ -95,7 +93,6 @@ app.get('/todos', async(req, res, next) => {
 
 app.get("/todos/:id", async (req, res, next) => {
     try {
-        const user = await findUserByToken(req.headers.authorization);
         const { id } = req.params;
         res.send(await singleTodo(id));
     } catch (ex) {           
@@ -107,7 +104,6 @@ app.get("/todos/:id", async (req, res, next) => {
 
 app.put("/todos/:id", async (req, res, next) => {
     try {
-        const user = await findUserByToken(req.headers.authorization);
         const { id } = req.params;
         const { description } = req.body;
         res.send(await updateTodo(id, description));
@@ -120,7 +116,6 @@ app.put("/todos/:id", async (req, res, next) => {
 
 app.delete("/todos/:id", async (req, res, next) => {
     try {
-        const user = await findUserByToken(req.headers.authorization);
         const { id } = req.params;
         res.send(await deleteTodo(id));
     } catch (ex) {
