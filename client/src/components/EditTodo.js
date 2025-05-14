@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import axios from 'axios';
 
-const EditTodo = ({ todo }) => {
+const EditTodo = ({ todo, getHeaders }) => {
     const [description, setDescription] = useState(todo.description);
+    
     //edit description function
 
     const updateDescription = async (e) => {
@@ -13,7 +14,7 @@ const EditTodo = ({ todo }) => {
                 "todo_id": todo.todo_id,
                 "description": description 
             };
-            const response = await axios.put(`https://joes-pern-todo-backend.onrender.com/todos/${todo.todo_id}`, body);
+            const response = await axios.put(`https://joes-pern-todo-backend.onrender.com/todos/${todo.todo_id}`, body, getHeaders());
 
             window.location = "/";
         } catch (error) {
