@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "JWT=michael nodemon index --ignore dist/",
-    "build:dev": "node index.js"
+    "build:dev": "node index.js",
+    "dev:sync": "SYNC=true npm run dev"
   },
   "author": "",
   "license": "ISC",

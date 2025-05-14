@@ -12,15 +12,19 @@ import Register from './components/Register';
 function App() {
   const [auth, setAuth] = useState({});
 
+  const getHeaders = () => {
+    return {
+      headers: {
+        authorization: window.localStorage.getItem('token')
+      }
+    }
+  };
+
   const attemptLoginWithToken = async()=> {
     const token = window.localStorage.getItem('token');
       if(token){
         try {
-          const response = await axios.get('https://joes-pern-todo-backend.onrender.com/me', {
-            headers: {
-              authorization: token
-            }
-      });
+          const response = await axios.get('https://joes-pern-todo-backend.onrender.com/me', getHeaders());
       setAuth(response.data);
         } catch (ex) {
           if(ex.response.status === 401){
@@ -50,8 +54,8 @@ function App() {
       {
         auth.user_id ? (
           <div className='container'>
-            <InputTodo auth={ auth } setAuth={ setAuth } />
-            <ListTodos auth={ auth } />
+            <InputTodo auth={ auth } setAuth={ setAuth } getHeaders={ getHeaders } />
+            <ListTodos auth={ auth } getHeaders={ getHeaders } />
           </div>
         ):(
           <div>
