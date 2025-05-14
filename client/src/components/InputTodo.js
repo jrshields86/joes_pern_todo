@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const InputTodo = ({ auth, setAuth, getHeaders }) => {
+const InputTodo = ({ auth, setAuth }) => {
     const [description, setDescription] = useState('');
     const id = auth.user_id;
 
@@ -12,7 +12,7 @@ const InputTodo = ({ auth, setAuth, getHeaders }) => {
                 description: description,
                 id: id
             };
-            const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body, getHeaders());
+            const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body);
             window.location = "/";
         } catch (error) {
         }
