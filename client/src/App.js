@@ -54,9 +54,18 @@ function App() {
             <ListTodos auth={ auth } />
           </div>
         ):(
+          
           <div>
-          <Login login={ login }/>
-          <Register createNewLogin={ createNewLogin } />
+            <div id="landingHeaderParentBox">
+                <h1 id="landingHeader">
+                    Your ToDo List
+                </h1>
+            </div>
+            <Login login={ login }/>
+            <div id="landingPageOrBox">
+              <h2> Or </h2>
+            </div>
+            <Register createNewLogin={ createNewLogin } />
         </div>
         )
       }

@@ -24,7 +24,6 @@ const Register = ({ createNewLogin })=> {
     return (
         <>
             <div id='newLoginHeaderParentBox'>
-                <h2> Or </h2>
                 <h2 id ='newLoginHeader'>Create an Account</h2>
             </div>
             <div id='newLoginFormParentBox'>
