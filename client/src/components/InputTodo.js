@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const InputTodo = ({ auth, setAuth }) => {
+const InputTodo = ({ auth, setAuth, getHeaders }) => {
     const [description, setDescription] = useState('');
     const id = auth.user_id;
+
+    const capitalizeFirstLetter = (name) => {
+        return name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    console.log(capitalizeFirstLetter(auth.username));
 
     const onSubmitForm = async e => {
         e.preventDefault();
@@ -12,7 +17,7 @@ const InputTodo = ({ auth, setAuth }) => {
                 description: description,
                 id: id
             };
-            const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body);
+            const response = await axios.post('https://joes-pern-todo-backend.onrender.com/todos', body, getHeaders());
             window.location = "/";
         } catch (error) {
         }
@@ -26,10 +31,10 @@ const InputTodo = ({ auth, setAuth }) => {
     return (
         <>
             <span>
-                Welcome { auth.username }!!
+                Welcome { capitalizeFirstLetter(auth.username) }!!
                 <button onClick={ logout }>Logout</button>
             </span>
-            <h1 className='text-center mt-5'>Todo List for { auth.username }</h1>
+            <h1 className='text-center mt-5'>Todo List for { capitalizeFirstLetter(auth.username) }</h1>
             <form className='d-flex mt-5' onSubmit={onSubmitForm}>
                 <input
                     type='text'
