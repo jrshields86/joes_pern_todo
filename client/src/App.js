@@ -54,11 +54,10 @@ function App() {
             <ListTodos auth={ auth } />
           </div>
         ):(
-          
-          <div>
+          <div id="landingPageParentBox">
             <div id="landingHeaderParentBox">
                 <h1 id="landingHeader">
-                    Your ToDo List
+                    Welcome to Your Todo
                 </h1>
             </div>
             <Login login={ login }/>
