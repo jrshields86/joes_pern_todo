@@ -6,7 +6,6 @@
   justify-content: center;
   align-items:center;
   text-align: center;
-  padding-top: 25vh;
 }
 
 #landingHeaderParentBox {
@@ -14,6 +13,7 @@
   justify-content: center;
   align-items:center;
   text-align: center;
+  padding-top: 2rem;
 }
 
 #loginHeaderParentBox {
@@ -44,6 +44,7 @@
   justify-content: center;
   align-items:center;
   text-align: center;
+  margin: 2rem;
 }
 
 #landingPageOrBox {
@@ -51,4 +52,40 @@
   justify-content: center;
   align-items:center;
   text-align: center;
+}
+#loginBoxParentBox {
+  border: 2px black solid;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+#loginHeader {
+  font-weight: bold;
+}
+
+#landingPageOr {
+  font-weight: bold;
+}
+
+#newLoginHeader {
+  font-weight: bold;
+}
+#createLoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  text-align: center;
+  gap: 1rem;
 }
