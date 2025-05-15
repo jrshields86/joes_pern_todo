@@ -6,7 +6,7 @@
   justify-content: center;
   align-items:center;
   text-align: center;
-  padding-top:25vh;
+  padding-top: 25vh;
 }
 
 #landingHeaderParentBox {
@@ -48,7 +48,6 @@
 
 #landingPageOrBox {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items:center;
   text-align: center;
