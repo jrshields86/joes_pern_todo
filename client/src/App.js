@@ -60,11 +60,13 @@ function App() {
                     Welcome to Your Todo
                 </h1>
             </div>
-            <Login login={ login }/>
-            <div id="landingPageOrBox">
-              <h4 id="landingPageOr"> Or </h4>
+            <div id='loginBoxParentBox'>
+              <Login login={ login }/>
+              <div id="landingPageOrBox">
+                <div id="landingPageOr"> Or </div>
+              </div>
+              <Register createNewLogin={ createNewLogin } />
             </div>
-            <Register createNewLogin={ createNewLogin } />
         </div>
         )
       }

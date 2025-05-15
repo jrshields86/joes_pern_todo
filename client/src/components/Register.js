@@ -24,16 +24,18 @@ const Register = ({ createNewLogin })=> {
     return (
         <>
             <div id='newLoginHeaderParentBox'>
-                <h2 id ='newLoginHeader'>Create an Account</h2>
+                <div id ='newLoginHeader'>Create an Account</div>
             </div>
             <div id='newLoginFormParentBox'>
-                <form onSubmit={ createLoginSubmitForm }>
+                <form onSubmit={ createLoginSubmitForm } id='createLoginForm'>
                     <input
+                        id='createLoginFormInput'
                         placeholder="create username"
                         value={username}
                         onChange={ev => setUsername(ev.target.value)}
                     />
                     <input
+                        id='createLoginFormInput'
                         placeholder="create password"
                         value={password}
                         onChange={ev => setPassword(ev.target.value)}

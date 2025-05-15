@@ -13,18 +13,20 @@ const Login = ({ login })=> {
     return (
         <>
             <div id='loginHeaderParentBox'>
-                <h2 id='loginHeader'>
+                <div id='loginHeader'>
                     Login
-                </h2>
+                </div>
             </div>
             <div id='loginFormParentBox'>
-                <form onSubmit={ _login }>
+                <form onSubmit={ _login } id='loginForm'>
                     <input
+                        id='loginFormInput'
                         placeholder='username' 
                         value={ username }
                         onChange={ ev => setUsername(ev.target.value)}
                     />
                     <input
+                        id='loginFormInput'
                         type='password' 
                         placeholder='password' 
                         value={ password }
