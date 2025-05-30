@@ -63,7 +63,7 @@ function App() {
             <div id='loginBoxParentBox'>
               <Login login={ login }/>
               <div id="landingPageOrBox">
-                <div id="landingPageOr"> Or </div>
+                <h2 id="landingPageOr"> Or </h2>
               </div>
               <Register createNewLogin={ createNewLogin } />
             </div>

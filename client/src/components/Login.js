@@ -13,9 +13,9 @@ const Login = ({ login })=> {
     return (
         <>
             <div id='loginHeaderParentBox'>
-                <div id='loginHeader'>
+                <h2 id='loginHeader'>
                     Login
-                </div>
+                </h2>
             </div>
             <div id='loginFormParentBox'>
                 <form onSubmit={ _login } id='loginForm'>
